@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Shop Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Apply the same width to all textboxes */
+    input[type="text"], textarea {
+      width: 300px;
+      height: 40px; /* For text inputs */
+      margin: 10px 0;
+    }
+
+    /* Adjust the size of the message textarea */
+    textarea {
+      height: 100px;
+    }
+
+    /* Change the color of the Payment Mode input */
+    #payment-mode {
+      background-color: lightgrey;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cake Shop Management</h1>
+    <p>Welcome to our delightful cake shop! Manage cakes, orders, customers, and more!</p>
+  </header>
+
+  <section id="cakes">
+    <h2>Our Cakes</h2>
+    <div class="cake-list">
+      <div class="cake-item" data-cake="Choco Truffle Cake" data-price="650">
+        <img src="assets/Choco Truffle Cake.jpg" alt="Choco Truffle Cake">
+        <p>Choco Truffle Cake (1kg) - ₹650</p>
+        <button onclick="addCake('Choco Truffle Cake', 650)">Add to Cart</button>
+        <input type="number" value="1" min="1" class="quantity-input" onchange="updateQuantity('Choco Truffle Cake', this.value)">
+      </div>
+      <div class="cake-item" data-cake="Fudgy Brownies" data-price="250">
+        <img src="assets/Fudgy Brownies.jpg" alt="Fudgy Brownies">
+        <p>Fudgy Brownies (100g) - ₹250</p>
+        <button onclick="addCake('Fudgy Brownies', 250)">Add to Cart</button>
+        <input type="number" value="1" min="1" class="quantity-input" onchange="updateQuantity('Fudgy Brownies', this.value)">
+      </div>
+      <div class="cake-item" data-cake="Red Velvet Cake" data-price="500">
+        <img src="assets/Red Velvet Cake.jpg" alt="Red Velvet Cake">
+        <p>Red Velvet Cake (1kg) - ₹500</p>
+        <button onclick="addCake('Red Velvet Cake', 500)">Add to Cart</button>
+        <input type="number" value="1" min="1" class="quantity-input" onchange="updateQuantity('Red Velvet Cake', this.value)">
+      </div>
+    </div>
+  </section>
+
+  <section id="cart" class="hidden">
+    <h2>Items in Your Cart</h2>
+    <table id="cart-items"></table>
+    <div id="cart-total"></div>
+    <button onclick="goToCheckout()">Proceed to Checkout</button>
+  </section>
+
+  <section id="checkout" class="hidden">
+    <h2>Enter Your Details</h2>
+    <table>
+      <tr><td>Name:</td><td><input type="text" id="name" required></td></tr>
+      <tr><td>Address:</td><td><input type="text" id="address" required></td></tr>
+      <tr><td>Contact Number:</td><td><input type="text" id="contact" required></td></tr>
+      <tr><td>Message:</td><td><textarea id="message" required></textarea></td></tr>
+      <tr><td>Payment Mode:</td><td><input type="text" id="payment-mode" value="Cash on Delivery" readonly></td></tr>
+    </table>
+    <button onclick="confirmOrder()">Confirm Order</button>
+  </section>
+
+  <section id="confirmation" class="hidden">
+    <h2>Thank You for Your Order!</h2>
+    <p>Your order has been successfully placed. We will deliver your cake soon.</p>
+    <button onclick="backToCakes()">Back to Cakes</button>
+  </section>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
